@@ -42,8 +42,8 @@ hold off
 %---------------- Stochasticity ---------------------------------% 
 
 %%% sigmaE = 0.5; % Intrinsic noise SD (I started with sigmaE=0.1 or 0.5)
-sigmaE = 0.25
-%sigmaE = 0.1
+%sigmaE = 0.25
+sigmaE = 0.1
 %sigmaE=0.05
 %------------------- Numerical integration stuff ----------------% 
 intervals = 20; %50 -> dt = 0.02, 20-> dt = 0.05
