@@ -96,7 +96,7 @@ ki=1;
 t=0.0;
 while(t<(T_max-dt))
 
-noiseFR = gamma*noiseFR+0.25*randn; %% Noise on the FR, on the half saturation
+noiseFR = -gamma*noiseFR*dt + 0.25*sqrt(dt)*randn; %% Noise on the FR, on the log(half saturation) -> thus multiplicative on the half-sat scale
 
 PreyGrowth = r*n(ki)*(1-n(ki)/K(kk));
 Predation = (C*n(ki)*p(ki))/(n(ki)+D*exp(noiseFR));
