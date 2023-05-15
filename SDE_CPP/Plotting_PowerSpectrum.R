@@ -30,6 +30,36 @@ spectrum(RMA$n[RMA$K==1.024])
 spectrum(RMA_I$n[RMA_I$K==1.024])
 spectrum(RMA_T$n[RMA_T$K==1.024])
 
+### ACF -- do we see some periodicity here? 
+par(mfrow=c(3,3))
+acf(RMA$n[RMA$K==0.128],lag.max = 250)
+acf(RMA_I$n[RMA_I$K==0.128],lag.max = 250)
+acf(RMA_T$n[RMA_T$K==0.128],lag.max = 250)
+
+acf(RMA$n[RMA$K==0.520],lag.max = 250)
+acf(RMA_I$n[RMA_I$K==0.520],lag.max = 250)
+acf(RMA_T$n[RMA_T$K==0.520],lag.max = 250)
+
+acf(RMA$n[RMA$K==1.024],lag.max = 250)
+acf(RMA_I$n[RMA_I$K==1.024],lag.max = 250)
+acf(RMA_T$n[RMA_T$K==1.024],lag.max = 250)
+## Seems like some long-run BUT these can perhaps arise out of randomness?
+
+## For 50 timesteps -- given we cannot test for much more
+par(mfrow=c(3,3))
+acf(RMA$n[RMA$K==0.128],lag.max = 50)
+acf(RMA_I$n[RMA_I$K==0.128],lag.max = 50)
+acf(RMA_T$n[RMA_T$K==0.128],lag.max = 50)
+
+acf(RMA$n[RMA$K==0.520],lag.max = 50)
+acf(RMA_I$n[RMA_I$K==0.520],lag.max = 50)
+acf(RMA_T$n[RMA_T$K==0.520],lag.max = 50)
+
+acf(RMA$n[RMA$K==1.024],lag.max = 50)
+acf(RMA_I$n[RMA_I$K==1.024],lag.max = 50)
+acf(RMA_T$n[RMA_T$K==1.024],lag.max = 50)
+# No periodicity
+
 ## In log-scale
 
 par(mfrow=c(3,3))
