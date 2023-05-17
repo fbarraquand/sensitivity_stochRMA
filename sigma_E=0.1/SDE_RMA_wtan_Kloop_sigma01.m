@@ -78,6 +78,12 @@ pmatrix_T=zeros(length(K),length_stored);
 n2matrix_T=zeros(length(K),length_stored);
 p2matrix_T=zeros(length(K),length_stored);
 
+
+timeseries_H = [];
+timeseries_I = [];
+timeseries_T = [];
+
+
 for (kk=1:length(K)),
 
 disp(kk)
@@ -171,11 +177,19 @@ p2_T(ki+1) = p2_T(ki) + dt*PredGrowth2_T; %
 ki=ki+1;
 t=t+dt;
 end
+
 %-----------------------end of time loop --------------------------%
 
-%% plot the time series
-%if (0==1), %should forbid plotting
+% store the high resolution stochastic time series for selected values of K
 if (K(kk)==0.1 | K(kk)==0.5 | K(kk)==1), 
+timeseries_H = vertcat(timeseries_H,[timevec',n',p',K(kk)*ones(length(timevec),1)]);
+timeseries_I = vertcat(timeseries_I,[timevec',n_I',p_I',K(kk)*ones(length(timevec),1)]);
+timeseries_T = vertcat(timeseries_T,[timevec',n_T',p_T',K(kk)*ones(length(timevec),1)]);
+end
+
+%% plot the time series
+if (0==1), %should forbid plotting
+%if (K(kk)==0.1 | K(kk)==0.5 | K(kk)==1), 
 set(gca,'FontSize',7,'FontName','Arial')
 
 figure,
@@ -370,7 +384,11 @@ yAX = get(gca,'YAxis');
 set(yAX,'FontSize',7);
 title('\fontsize{7}tanh')
 hold off
-
-%toc
 %
-print(figure(gcf),'-dpng','-r300','RMA_Kloop_sigma01');
+%print(figure(gcf),'-dpng','-r600','RMA_Kloop');
+
+csvwrite('timeseries_H.csv',timeseries_H)
+csvwrite('timeseries_I.csv',timeseries_I)
+csvwrite('timeseries_T.csv',timeseries_T)
+%toc
+
